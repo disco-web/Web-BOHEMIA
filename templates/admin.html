@@ -1,0 +1,169 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<!-- Mensajes flash (éxito o error) -->
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <p style="color: var(--primary-color); text-align: center;">{{ messages[0] }}</p>
+    {% endif %}
+{% endwith %}
+
+<!-- ===================== -->
+<!-- SECCIÓN: AGREGAR RRPP -->
+<!-- ===================== -->
+<div class="admin-panel">
+    <h2 class="admin-title">Agregar RRPP</h2>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="tipo" value="add_rrpp">
+        <input type="text" name="localidad" placeholder="Localidad" required>
+        <input type="text" name="nombre" placeholder="Nombre" required>
+        <p style="font-size:12px; color:#aaa;">Subir foto:</p>
+        <input type="file" name="foto" accept="image/*">
+        <input type="text" name="foto_url" placeholder="O pegá URL de foto">
+        <input type="text" name="instagram" placeholder="Instagram (sin @)">
+        <input type="text" name="whatsapp" placeholder="WhatsApp (ej: 5491112345678)">
+        <input type="number" name="orden" placeholder="Orden (número)" value="99">
+        <button type="submit">Agregar RRPP</button>
+    </form>
+</div>
+
+<!-- =========================== -->
+<!-- SECCIÓN: AGREGAR TRANSPORTE -->
+<!-- =========================== -->
+<div class="admin-panel">
+    <h2 class="admin-title">Agregar Transporte</h2>
+    <form method="POST">
+        <input type="hidden" name="tipo" value="add_transporte">
+        <input type="text" name="ciudad" placeholder="Ciudad" required>
+        <input type="text" name="nombre_taxi" placeholder="Nombre del servicio" required>
+        <input type="text" name="dueno" placeholder="Nombre del dueño">
+        <textarea name="descripcion" placeholder="Descripción"></textarea>
+        <input type="text" name="precio" placeholder="Precio (ej: $5000)">
+        <input type="text" name="whatsapp" placeholder="WhatsApp (ej: 5491112345678)">
+        <input type="number" name="orden" placeholder="Orden (número)" value="99">
+        <button type="submit">Agregar Transporte</button>
+    </form>
+</div>
+
+<!-- ====================== -->
+<!-- SECCIÓN: CONFIGURACIÓN -->
+<!-- ====================== -->
+<div class="admin-panel">
+    <h2 class="admin-title">Textos de la página</h2>
+    <form method="POST">
+        <input type="hidden" name="tipo" value="config_textos">
+        <p style="font-size:12px; color:#aaa;">Texto debajo del logo:</p>
+        <textarea name="texto_header">{% if config %}{{ config.texto_header }}{% endif %}</textarea>
+        <p style="font-size:12px; color:#aaa;">Aviso en página transportes:</p>
+        <textarea name="texto_actualizacion">{% if config %}{{ config.texto_actualizacion }}{% endif %}</textarea>
+        <p style="font-size:12px; color:#aaa;">Texto del footer:</p>
+        <textarea name="texto_footer">{% if config %}{{ config.texto_footer }}{% endif %}</textarea>
+        <button type="submit">Guardar textos</button>
+    </form>
+</div>
+
+<!-- ================= -->
+<!-- SECCIÓN: PUBLICAR -->
+<!-- ================= -->
+<div class="admin-panel">
+    <h2 class="admin-title">Publicar página</h2>
+    <p style="font-size:12px; color:#aaa; margin-bottom:10px;">
+        Esto genera el HTML estático y lo publica en GitHub Pages.
+    </p>
+    <form method="POST" action="{{ url_for('publicar') }}">
+        <button type="submit">🚀 Publicar ahora</button>
+    </form>
+</div>
+
+<!-- ============== -->
+<!-- LISTA DE RRPP -->
+<!-- ============== -->
+<div class="admin-panel">
+    <h2 class="admin-title">RRPP cargados</h2>
+    <table>
+        <tr>
+            <th>Orden</th>
+            <th>Nombre</th>
+            <th>Localidad</th>
+            <th>Visible</th>
+            <th>Acciones</th>
+        </tr>
+        {% for rrpp in rrpps %}
+        <tr>
+            <td>{{ rrpp.orden }}</td>
+            <td>{{ rrpp.nombre }}</td>
+            <td>{{ rrpp.localidad }}</td>
+            <td>{{ '✅' if rrpp.visible else '❌' }}</td>
+            <td>
+                <!-- Editar -->
+                <a href="{{ url_for('edit_rrpp', id=rrpp.id) }}">
+                    <button style="width:auto; padding:4px 8px; margin:2px;">✏️</button>
+                </a>
+                <!-- Mostrar/Ocultar -->
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="tipo" value="toggle">
+                    <input type="hidden" name="tabla" value="rrpp">
+                    <input type="hidden" name="id" value="{{ rrpp.id }}">
+                    <button style="width:auto; padding:4px 8px; margin:2px;">👁️</button>
+                </form>
+                <!-- Eliminar -->
+                <form method="POST" style="display:inline;" onsubmit="return confirm('¿Eliminar?')">
+                    <input type="hidden" name="tipo" value="delete">
+                    <input type="hidden" name="tabla" value="rrpp">
+                    <input type="hidden" name="id" value="{{ rrpp.id }}">
+                    <button class="btn-danger" style="width:auto; padding:4px 8px; margin:2px;">🗑️</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<!-- ==================== -->
+<!-- LISTA DE TRANSPORTES -->
+<!-- ==================== -->
+<div class="admin-panel">
+    <h2 class="admin-title">Transportes cargados</h2>
+    <table>
+        <tr>
+            <th>Orden</th>
+            <th>Ciudad</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Visible</th>
+            <th>Acciones</th>
+        </tr>
+        {% for t in transportes %}
+        <tr>
+            <td>{{ t.orden }}</td>
+            <td>{{ t.ciudad }}</td>
+            <td>{{ t.nombre_taxi }}</td>
+            <td>{{ t.precio }}</td>
+            <td>{{ '✅' if t.visible else '❌' }}</td>
+            <td>
+                <!-- Editar -->
+                <a href="{{ url_for('edit_transporte', id=t.id) }}">
+                    <button style="width:auto; padding:4px 8px; margin:2px;">✏️</button>
+                </a>
+                <!-- Mostrar/Ocultar -->
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="tipo" value="toggle">
+                    <input type="hidden" name="tabla" value="transporte">
+                    <input type="hidden" name="id" value="{{ t.id }}">
+                    <button style="width:auto; padding:4px 8px; margin:2px;">👁️</button>
+                </form>
+                <!-- Eliminar -->
+                <form method="POST" style="display:inline;" onsubmit="return confirm('¿Eliminar?')">
+                    <input type="hidden" name="tipo" value="delete">
+                    <input type="hidden" name="tabla" value="transporte">
+                    <input type="hidden" name="id" value="{{ t.id }}">
+                    <button class="btn-danger" style="width:auto; padding:4px 8px; margin:2px;">🗑️</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

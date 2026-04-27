@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<!-- Texto de actualización configurable desde el admin -->
+{% if config.texto_actualizacion %}
+<div class="texto-actualizacion">
+    <p>{{ config.texto_actualizacion }}</p>
+</div>
+{% endif %}
+
+<!-- Acordeón de ciudades -->
+<div class="accordion-section">
+    {% for ciudad in ciudades %}
+    <details>
+
+        <!-- Botón de la ciudad -->
+        <summary>▼ {{ ciudad }}</summary>
+
+        <!-- Contenido de la ciudad -->
+        <div class="details-content">
+            {% for t in transportes %}
+                {% if t.ciudad.strip() == ciudad %}
+                <div class="trans-card">
+
+                    <!-- Nombre del servicio -->
+                    <div class="card-header-strip">{{ t.nombre_taxi }}</div>
+
+                    <!-- Nombre del dueño -->
+                    <div class="card-owner-strip">{{ t.dueno }}</div>
+
+                    <div class="card-body-area">
+                        <div class="price-box">
+
+                            <!-- Descripción del servicio -->
+                            <div class="desc-text">{{ t.descripcion }}</div>
+
+                            <!-- Precio -->
+                            <div class="precio-text">{{ t.precio }}</div>
+
+                        </div>
+                    </div>
+
+                    <!-- Botón de WhatsApp -->
+                    <a href="https://wa.me/{{ t.whatsapp }}" target="_blank" class="wa-button-strip">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="15" height="15" alt="WA">
+                        Reservá tu lugar
+                    </a>
+
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+    </details>
+    {% endfor %}
+</div>
+
+{% endblock %}

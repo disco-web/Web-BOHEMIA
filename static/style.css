@@ -1,0 +1,455 @@
+/* =====================
+   VARIABLES DE COLOR
+   Acá definimos los colores principales.
+   Cambiando estos valores, cambia toda la página.
+   ===================== */
+:root {
+    --bg-dark: #111113;
+    --primary-color: #c9a96e;      /* Dorado - color principal de La Bohemia */
+    --secondary-color: #1a1a2e;    /* Azul muy oscuro */
+    --card-dark: #1e1e1e;
+    --text-white: #eeeeee;
+    --text-dark: #1a1a1a;
+    --input-bg: #2a2a2a;
+    --danger-red: #d9534f;
+}
+
+/* =====================
+   RESET Y BASE
+   ===================== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: radial-gradient(circle at center, #1e1e2e 0%, #0a0a0a 100%);
+}
+
+/* =====================
+   CONTENEDOR PRINCIPAL
+   ===================== */
+.container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* =====================
+   LOGIN OCULTO
+   Zona invisible arriba para acceder al admin
+   ===================== */
+.hidden-login {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 40px;
+    opacity: 0;
+    z-index: 999;
+    cursor: default;
+}
+
+/* =====================
+   HEADER Y LOGO
+   ===================== */
+.header-section {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.logo-img {
+    max-width: 140px;
+    width: 100%;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.header-text {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #ccc;
+    letter-spacing: 1px;
+    white-space: pre-line;
+    line-height: 1.5;
+}
+
+/* =====================
+   NAVEGACIÓN
+   ===================== */
+.nav-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.nav-btn {
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.nav-btn.inactive {
+    background-color: #e0e0e0;
+    color: var(--text-dark);
+    opacity: 0.8;
+}
+
+.nav-btn.active, .nav-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--text-dark);
+    box-shadow: 0 0 15px rgba(201, 169, 110, 0.4);
+    opacity: 1;
+}
+
+/* =====================
+   GRID DE RRPP
+   ===================== */
+.rrpp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.rrpp-card {
+    background-color: var(--card-dark);
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    border-bottom: 2px solid var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.rrpp-loc {
+    background: #eee;
+    color: #222;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: bold;
+    width: 100%;
+}
+
+.rrpp-name {
+    color: rgba(255,255,255,0.9);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Contenedor de la foto de perfil */
+.rrpp-foto-container {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    background: #222;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.rrpp-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Inicial del nombre cuando no hay foto */
+.rrpp-inicial {
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-link {
+    text-decoration: none;
+    color: white;
+    background: #333;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 100%;
+    transition: transform 0.2s;
+}
+
+.social-link:hover { transform: scale(1.05); }
+.social-link.wa { background: #25D366; color: #222; font-weight: bold; }
+.social-link.ig { background: linear-gradient(45deg, #f09433, #bc1888); font-weight: bold; }
+
+/* =====================
+   ACORDEÓN TRANSPORTES
+   ===================== */
+details {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+summary {
+    background-color: var(--bg-dark);
+    border: 2px solid var(--primary-color);
+    color: white;
+    padding: 15px;
+    border-radius: 50px;
+    font-weight: 900;
+    text-transform: uppercase;
+    cursor: pointer;
+    list-style: none;
+    text-align: center;
+    position: relative;
+    z-index: 20;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+summary:hover { box-shadow: 0 0 15px rgba(201, 169, 110, 0.4); }
+summary::-webkit-details-marker { display: none; }
+
+details[open] summary {
+    background-color: var(--primary-color);
+    color: var(--text-dark);
+    border-color: var(--primary-color);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.details-content {
+    background-color: var(--primary-color);
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    padding: 20px;
+    margin-top: -5px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    animation: openSmooth 0.5s forwards;
+    transform-origin: top center;
+}
+
+@keyframes openSmooth {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+        border-top-left-radius: 50px;
+        border-top-right-radius: 50px;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+}
+
+/* =====================
+   TARJETA TRANSPORTE
+   ===================== */
+.trans-card {
+    background-color: #1a1a1a;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header-strip {
+    background-color: var(--primary-color);
+    color: var(--text-dark);
+    font-weight: 800;
+    text-align: center;
+    padding: 8px;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+.card-owner-strip {
+    background-color: #111;
+    color: white;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card-body-area {
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.price-box {
+    background-color: #111;
+    color: white;
+    padding: 10px;
+    border-radius: 20px;
+    border: 2px solid #eee;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    margin: 5px 40px;
+    overflow: hidden;
+}
+
+.desc-text {
+    font-size: 11px;
+    font-weight: 700;
+    color: #eee;
+    padding: 5px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    white-space: pre-wrap;
+}
+
+.precio-text {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--primary-color);
+    margin-top: 5px;
+}
+
+.wa-button-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: #25D366;
+    color: #1a1a1a;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin: 0 15px 15px 15px;
+    border-radius: 50px;
+    transition: filter 0.2s;
+}
+
+.wa-button-strip:hover { filter: brightness(1.1); }
+
+/* =====================
+   ADMIN Y FORMULARIOS
+   ===================== */
+.admin-panel {
+    background: var(--card-dark);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid #444;
+    margin-bottom: 20px;
+}
+
+.admin-title {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 18px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    background-color: var(--input-bg);
+    border: 1px solid #555;
+    color: white;
+    border-radius: 8px;
+    font-family: inherit;
+    resize: none;
+}
+
+input:focus { outline: none; border-color: var(--primary-color); }
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background-color: var(--primary-color);
+    color: var(--text-dark);
+    border: none;
+    border-radius: 8px;
+    font-weight: 900;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+button:hover { filter: brightness(1.1); }
+.btn-danger { background-color: var(--danger-red); color: white; margin-top: 0; }
+
+table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12px; }
+th { text-align: left; color: #aaa; padding: 5px; border-bottom: 1px solid #444; }
+td { padding: 8px 5px; border-bottom: 1px solid #333; vertical-align: middle; }
+
+.back-link { color: #aaa; text-decoration: none; font-size: 12px; display: block; margin-bottom: 15px; }
+
+/* =====================
+   FOOTER
+   ===================== */
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 11px;
+    color: #666;
+    margin-top: 30px;
+    letter-spacing: 1px;
+}
+
+/* =====================
+   TEXTO DE ACTUALIZACIÓN
+   ===================== */
+.texto-actualizacion {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.texto-actualizacion p {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #ccc;
+    display: inline-block;
+    padding: 5px 15px;
+    border-bottom: 1px solid var(--primary-color);
+    white-space: pre-line;
+    line-height: 1.5;
+}

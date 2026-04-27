@@ -1,0 +1,19 @@
+# Claves secretas - NUNCA subir a GitHub
+.env
+
+# Base de datos local
+instance/
+*.db
+
+# Archivos temporales de Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Carpeta de entorno virtual
+venv/
+env/

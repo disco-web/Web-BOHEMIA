@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<!-- Grid de tarjetas de RRPP -->
+<div class="rrpp-grid">
+    {% for rrpp in rrpps %}
+    <div class="rrpp-card">
+
+        <!-- Localidad del RRPP -->
+        <div class="rrpp-loc">{{ rrpp.localidad }}</div>
+
+        <!-- Nombre del RRPP -->
+        <div class="rrpp-name">{{ rrpp.nombre }}</div>
+
+        <!-- Foto de perfil. Si no tiene foto, muestra la inicial del nombre -->
+        <div class="rrpp-foto-container">
+            {% if rrpp.foto_url %}
+                <img src="{{ rrpp.foto_url }}" 
+                     alt="Foto de {{ rrpp.nombre }}" 
+                     class="rrpp-photo"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="rrpp-inicial" style="display:none;">{{ rrpp.nombre[0] }}</div>
+            {% else %}
+                <div class="rrpp-inicial">{{ rrpp.nombre[0] }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Botones de contacto -->
+        <a href="https://www.instagram.com/{{ rrpp.instagram }}" target="_blank" class="social-link ig">Instagram</a>
+        <a href="https://wa.me/{{ rrpp.whatsapp }}" target="_blank" class="social-link wa">Whatsapp</a>
+
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

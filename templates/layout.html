@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Bohemia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+
+        <!-- Zona clickeable invisible para acceder al login del admin -->
+        <a href="/login" class="hidden-login"></a>
+
+        <!-- Header con logo y texto configurable -->
+        <div class="header-section">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="La Bohemia" class="logo-img">
+            {% if config %}
+            <div class="header-text">{{ config.texto_header }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Contenido principal -->
+        <div class="main-content">
+
+            <!-- Navegación (se oculta en login y admin) -->
+            {% if page %}
+            <div class="nav-toggle">
+                <a href="{{ url_for('index') }}" class="nav-btn {% if page == 'rrpp' %}active{% else %}inactive{% endif %}">RRPP</a>
+                <a href="{{ url_for('transportes') }}" class="nav-btn {% if page == 'transportes' %}active{% else %}inactive{% endif %}">Transportes</a>
+            </div>
+            {% endif %}
+
+            {% block content %}{% endblock %}
+        </div>
+
+        <!-- Footer con texto configurable -->
+        <footer>
+            {% if config %}
+            <p style="white-space: pre-wrap;">{{ config.texto_footer }}</p>
+            {% else %}
+            SYSTEM ERROR: NO CONFIG
+            {% endif %}
+        </footer>
+
+    </div>
+</body>
+</html>

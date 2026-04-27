@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<!-- Formulario para editar un Transporte existente -->
+<div class="admin-panel">
+
+    <a href="{{ url_for('admin') }}" class="back-link">← Volver al admin</a>
+    <h2 class="admin-title">Editar Transporte</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <!-- Ciudad -->
+        <input type="text" name="ciudad" value="{{ transporte.ciudad }}" placeholder="Ciudad" required>
+
+        <!-- Nombre del servicio -->
+        <input type="text" name="nombre_taxi" value="{{ transporte.nombre_taxi }}" placeholder="Nombre del servicio" required>
+
+        <!-- Dueño -->
+        <input type="text" name="dueno" value="{{ transporte.dueno }}" placeholder="Nombre del dueño">
+
+        <!-- Descripción -->
+        <textarea name="descripcion" placeholder="Descripción">{{ transporte.descripcion }}</textarea>
+
+        <!-- Precio -->
+        <input type="text" name="precio" value="{{ transporte.precio }}" placeholder="Precio (ej: $5000)">
+
+        <!-- WhatsApp -->
+        <input type="text" name="whatsapp" value="{{ transporte.whatsapp }}" placeholder="WhatsApp (ej: 5491112345678)">
+
+        <!-- Orden -->
+        <input type="number" name="orden" value="{{ transporte.orden }}" placeholder="Orden de aparición">
+
+        <button type="submit">Guardar cambios</button>
+
+    </form>
+
+</div>
+
+{% endblock %}

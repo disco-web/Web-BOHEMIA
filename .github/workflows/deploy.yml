@@ -1,0 +1,46 @@
+# Este archivo le dice a GitHub qué hacer automáticamente
+# cuando apretás "Publicar" desde el admin
+
+name: Deploy Static Site
+
+on:
+  # Se activa cuando apretás "Publicar" desde el admin
+  repository_dispatch:
+    types: [update_static_site]
+  
+  # También se activa cuando subís código a la rama main
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Paso 1: Descarga el código del repo
+      - uses: actions/checkout@v3
+      
+      # Paso 2: Instala Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      # Paso 3: Instala las librerías del requirements.txt
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      
+      # Paso 4: Ejecuta freeze.py para generar el HTML estático
+      # Usa la base de datos real de Supabase (via DATABASE_URL)
+      - name: Freeze site
+        run: python freeze.py
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      
+      # Paso 5: Sube el HTML generado a la rama gh-pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          publish_branch: gh-pages

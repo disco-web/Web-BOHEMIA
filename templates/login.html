@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<!-- Formulario de login del administrador -->
+<div class="admin-panel">
+    <h2 class="admin-title">Acceso Administrador</h2>
+
+    <!-- Mensaje de error si los datos son incorrectos -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <p style="color: red; text-align: center;">{{ messages[0] }}</p>
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <input type="text" name="username" placeholder="Usuario" required>
+        <input type="password" name="password" placeholder="Contraseña" required>
+        <button type="submit">Entrar</button>
+    </form>
+
+</div>
+
+{% endblock %}

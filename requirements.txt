@@ -1,0 +1,6 @@
+flask
+flask-sqlalchemy
+frozen-flask
+python-dotenv
+cloudinary
+requests
