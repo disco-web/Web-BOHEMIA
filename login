@@ -17,7 +17,7 @@
         <div class="header-section">
             <img src="static/logo.png" alt="La Bohemia" class="logo-img">
             
-            <div class="header-text">qwe</div>
+            <div class="header-text">General Arenales</div>
             
         </div>
 
@@ -52,7 +52,7 @@
         <!-- Footer con texto configurable -->
         <footer>
             
-            <p style="white-space: pre-wrap;">qwe</p>
+            <p style="white-space: pre-wrap;">Las noches más lindas son de La Bohe ♥</p>
             
         </footer>
 
