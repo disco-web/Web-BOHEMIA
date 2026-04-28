@@ -2,6 +2,8 @@ import os
 from app import app, db, RRPP, Transporte, Configuracion
 from flask_frozen import Freezer
 
+app.config['FREEZER_RELATIVE_URLS'] = True
+
 # --- Freezer convierte la app Flask en archivos HTML estáticos ---
 freezer = Freezer(app)
 
