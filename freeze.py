@@ -2,6 +2,8 @@ import os
 from app import app, db, RRPP, Transporte, Configuracion
 from flask_frozen import Freezer
 
+# Esta línea es CLAVE: hace que los links al CSS sean relativos (./static/style.css)
+# Esto permite que la web funcione aunque esté en una subcarpeta de GitHub Pages
 app.config['FREEZER_RELATIVE_URLS'] = True
 
 # --- Freezer convierte la app Flask en archivos HTML estáticos ---
