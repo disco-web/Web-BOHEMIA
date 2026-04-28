@@ -11,7 +11,7 @@
     <div class="container">
 
         <!-- Zona clickeable invisible para acceder al login del admin -->
-        <a href="/login" class="hidden-login"></a>
+        <a href="https://web-bohemia.onrender.com/login" class="hidden-login"></a>
 
         <!-- Header con logo y texto configurable -->
         <div class="header-section">
