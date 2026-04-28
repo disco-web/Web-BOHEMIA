@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Bohemia</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
     <div class="container">
@@ -15,7 +15,7 @@
 
         <!-- Header con logo y texto configurable -->
         <div class="header-section">
-            <img src="/static/logo.png" alt="La Bohemia" class="logo-img">
+            <img src="static/logo.png" alt="La Bohemia" class="logo-img">
             
             <div class="header-text">qwe</div>
             
