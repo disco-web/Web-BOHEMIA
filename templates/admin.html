@@ -63,19 +63,6 @@
     </form>
 </div>
 
-<!-- ================= -->
-<!-- SECCIÓN: PUBLICAR -->
-<!-- ================= -->
-<div class="admin-panel">
-    <h2 class="admin-title">Publicar página</h2>
-    <p style="font-size:12px; color:#aaa; margin-bottom:10px;">
-        Esto genera el HTML estático y lo publica en GitHub Pages.
-    </p>
-    <form method="POST" action="{{ url_for('publicar') }}">
-        <button type="submit">🚀 Publicar ahora</button>
-    </form>
-</div>
-
 <!-- ============== -->
 <!-- LISTA DE RRPP -->
 <!-- ============== -->
@@ -164,6 +151,48 @@
         </tr>
         {% endfor %}
     </table>
+</div>
+
+<!-- ===================== -->
+<!-- SECCIÓN: ACCESOS DIRECTOS -->
+<!-- ===================== -->
+<!-- Sección de Accesos Directos (Estilo Jarana) -->
+<div style="background: #1a1a1a; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #d4af37;">
+    <h3 style="color: #d4af37; margin-top: 0;">Centro de Mandos</h3>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <!-- Botón para ver la web pública -->
+        <a href="https://disco-web.github.io/Web-BOHEMIA/" target="_blank" style="background: #d4af37; color: black; padding: 8px 15px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+            👁️ Ver Web Pública
+        </a>
+        
+        <!-- Link a Render (para ver si el servidor está vivo) -->
+        <a href="https://dashboard.render.com/" target="_blank" style="background: #333; color: white; padding: 8px 15px; text-decoration: none; border-radius: 5px; border: 1px solid #555;">
+            🚀 Render Dashboard
+        </a>
+
+        <!-- Link a Supabase (Base de datos) -->
+        <a href="https://supabase.com/dashboard/projects" target="_blank" style="background: #333; color: white; padding: 8px 15px; text-decoration: none; border-radius: 5px; border: 1px solid #555;">
+            🗄️ Supabase (DB)
+        </a>
+
+        <!-- Link a Cloudinary (Fotos) -->
+        <a href="https://cloudinary.com/console" target="_blank" style="background: #333; color: white; padding: 8px 15px; text-decoration: none; border-radius: 5px; border: 1px solid #555;">
+            📸 Cloudinary
+        </a>
+    </div>
+</div>
+
+<!-- ================= -->
+<!-- SECCIÓN: PUBLICAR -->
+<!-- ================= -->
+<div class="admin-panel">
+    <h2 class="admin-title">Publicar página</h2>
+    <p style="font-size:12px; color:#aaa; margin-bottom:10px;">
+        Esto genera el HTML estático y lo publica en GitHub Pages.
+    </p>
+    <form method="POST" action="{{ url_for('publicar') }}">
+        <button type="submit">🚀 Publicar ahora</button>
+    </form>
 </div>
 
 {% endblock %}
