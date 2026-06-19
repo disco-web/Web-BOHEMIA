@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Acceso administrador — La Bohemia</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --panel: #181b21;
+    --border: #2a2e37;
+    --text: #e8e9ec;
+    --muted: #8b909c;
+    --step1: #3ecf8e;
+    --step1-dim: #1a3329;
+    --step2: #5b8cff;
+    --step2-dim: #1a2540;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 24px;
+  }
+  .card {
+    width: 100%;
+    max-width: 420px;
+  }
+  .eyebrow {
+    color: var(--muted);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  h1 {
+    font-size: 22px;
+    margin: 0 0 28px 0;
+    font-weight: 600;
+  }
+  .step {
+    display: block;
+    text-decoration: none;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    transition: border-color 0.15s ease, transform 0.1s ease;
+    position: relative;
+  }
+  .step:active { transform: scale(0.99); }
+  .step-1 { border-color: var(--step1-dim); }
+  .step-1:hover { border-color: var(--step1); }
+  .step-2 { border-color: var(--step2-dim); }
+  .step-2:hover { border-color: var(--step2); }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 10px;
+  }
+  .step-1 .step-num { background: var(--step1-dim); color: var(--step1); }
+  .step-2 .step-num { background: var(--step2-dim); color: var(--step2); }
+  .step-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .step-sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 6px;
+    margin-left: 32px;
+    line-height: 1.4;
+  }
+  .note {
+    margin-top: 22px;
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.5;
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+  }
+  .note strong { color: var(--text); }
+</style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="eyebrow">La Bohemia · Panel</div>
+    <h1>¿A dónde querés ir?</h1>
+
+    <a class="step step-1" href="https://supabase.com/dashboard/project/ccbetzjfbcutkmnqdhfy" target="_blank" rel="noopener">
+      <span class="step-num">1</span><span class="step-title">Activar base de datos</span>
+      <div class="step-sub">Abrí esto primero si el sitio lleva varios días sin uso. Si el proyecto está pausado, tocá "Resume project" ahí dentro.</div>
+    </a>
+
+    <a class="step step-2" href="https://web-bohemia.onrender.com/login" target="_blank" rel="noopener">
+      <span class="step-num">2</span><span class="step-title">Ir a login</span>
+      <div class="step-sub">Una vez que la base esté activa, entrá acá con tu usuario y contraseña como siempre.</div>
+    </a>
+
+    <div class="note">
+      <strong>Orden correcto:</strong> primero Supabase, después login. Si entrás directo al login y la base está pausada, va a fallar la conexión.
+    </div>
+  </div>
+
+</body>
+</html>
