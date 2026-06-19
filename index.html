@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Bohemia</title>
+    <link rel="icon" href="static/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
     <div class="container">
 
-        <!-- Zona clickeable invisible para acceder al login del admin -->
-        <a href="static/panel_acceso.html" class="hidden-login"></a>
+        <!-- Zona clickeable invisible para acceder al panel de acceso -->
+        <a href="static/panel_acceso.html" 
+        style="position: fixed; bottom: 0; right: 0; width: 40px; height: 40px; z-index: 9999; opacity: 0; cursor: default;">
+        Admin
+        </a>
 
         <!-- Header con logo y texto configurable -->
         <div class="header-section">
