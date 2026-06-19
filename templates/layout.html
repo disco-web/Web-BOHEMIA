@@ -11,7 +11,7 @@
     <div class="container">
 
         <!-- Zona clickeable invisible para acceder al login del admin -->
-        <a href="static/panel_acceso.html" class="hidden-login"></a>
+        <a href="{{ url_for('static', filename='panel_acceso.html') }}" style="display:none;">Admin</a>
 
         <!-- Header con logo y texto configurable -->
         <div class="header-section">
