@@ -5,4 +5,5 @@ python-dotenv
 cloudinary
 requests
 psycopg2-binary
+psycopg[binary]
 gunicorn
